@@ -1,5 +1,7 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.List;
+
 public class UserService {
 
     public boolean addUser() {
@@ -14,15 +16,11 @@ public class UserService {
         throw new NotImplementedException();
     }
 
-    public User findUser(int id, String name) {
+    public List<User> findUsersByName(String name) {
         throw new NotImplementedException();
     }
 
-    public User findUser(String firstName, String secondName) {
-        throw new NotImplementedException();
-    }
-
-    public User findUser(int id, String firstName, String secondName) {
+    public List<User> findUsersByFirstNameAndSecondName(String firstName, String secondName) {
         throw new NotImplementedException();
     }
 

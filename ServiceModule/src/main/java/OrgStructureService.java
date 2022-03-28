@@ -16,11 +16,7 @@ public class OrgStructureService {
         throw new NotImplementedException();
     }
 
-    public OrgStructure findOrg(int id, String name) {
-        throw new NotImplementedException();
-    }
-
-    public OrgStructure findOrg(String name) {
+    public List<OrgStructure> findOrgsByName(String name) {
         throw new NotImplementedException();
     }
 
