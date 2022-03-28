@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/ControllerModule/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ControllerModule/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/EntityModule/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/EntityModule/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FileManipulationModule/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FileManipulationModule/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/IntegrationTestModule/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/IntegrationTestModule/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MainAppModule/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MainAppModule/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MessagingModule/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MessagingModule/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ServiceModule/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ServiceModule/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/untitled/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/untitled/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
