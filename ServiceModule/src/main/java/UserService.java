@@ -10,19 +10,19 @@ public class UserService {
         throw new NotImplementedException();
     }
 
-    public boolean findUser(int id) {
+    public User findUser(int id) {
         throw new NotImplementedException();
     }
 
-    public boolean findUser(int id, String name) {
+    public User findUser(int id, String name) {
         throw new NotImplementedException();
     }
 
-    public boolean findUser(String firstName, String secondName) {
+    public User findUser(String firstName, String secondName) {
         throw new NotImplementedException();
     }
 
-    public boolean findUser(int id, String firstName, String secondName) {
+    public User findUser(int id, String firstName, String secondName) {
         throw new NotImplementedException();
     }
 

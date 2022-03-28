@@ -1,5 +1,7 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.List;
+
 public class OrgStructureService {
 
     public boolean addOrg() {
@@ -10,15 +12,15 @@ public class OrgStructureService {
         throw new NotImplementedException();
     }
 
-    public boolean findUOrg(int id) {
+    public OrgStructure findOrg(int id) {
         throw new NotImplementedException();
     }
 
-    public boolean findUser(int id, String name) {
+    public OrgStructure findOrg(int id, String name) {
         throw new NotImplementedException();
     }
 
-    public boolean findUser(String name) {
+    public OrgStructure findOrg(String name) {
         throw new NotImplementedException();
     }
 
@@ -35,6 +37,14 @@ public class OrgStructureService {
     }
 
     public boolean changeOrgName(int id, String name) {
+        throw new NotImplementedException();
+    }
+
+    public List<User> getStaff(int id) {
+        throw new NotImplementedException();
+    }
+
+    public List<OrgStructure> getSubOrgs(int id) {
         throw new NotImplementedException();
     }
 }
