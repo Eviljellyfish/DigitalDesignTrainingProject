@@ -2,7 +2,7 @@
 My implementation of practice project from DigitalDesign
 
 ## Module separation
-![Module diagram](./ModuleSheme.png)
+![Module diagram](ModuleScheme.png)
 
 ## Class diagram
 ![Class diagram](ClassDiagram.png)
