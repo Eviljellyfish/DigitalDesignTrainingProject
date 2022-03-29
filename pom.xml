@@ -13,7 +13,7 @@
     <module>ServiceModule</module>
     <module>IntegrationTestModule</module>
     <module>MessagingModule</module>
-    <module>FileManipulationModule</module>
+    <module>InitModule</module>
     <module>MainAppModule</module>
   </modules>
   <packaging>pom</packaging>

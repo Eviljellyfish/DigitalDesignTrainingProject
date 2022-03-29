@@ -11,7 +11,7 @@
         <module name="EntityModule" />
         <module name="IntegrationTestModule" />
         <module name="MainAppModule" />
-        <module name="FileManipulationModule" />
+        <module name="InitModule" />
         <module name="ServiceModule" />
       </profile>
     </annotationProcessing>
