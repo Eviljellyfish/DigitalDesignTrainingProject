@@ -2,7 +2,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 
-public class UserController extends UserService {
+public class UserController {
 
     private final UserService userService;
 
