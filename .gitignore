@@ -1,1 +1,6 @@
+# Idea folder
 /.idea/
+
+*.iml
+
+*.png
