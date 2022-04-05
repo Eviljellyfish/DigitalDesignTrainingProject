@@ -8,13 +8,13 @@
   <artifactId>DigitalDesignTrainingProject</artifactId>
   <version>1.0-SNAPSHOT</version>
   <modules>
-    <module>EntityModule</module>
-    <module>ControllerModule</module>
-    <module>ServiceModule</module>
-    <module>IntegrationTestModule</module>
-    <module>MessagingModule</module>
-    <module>InitModule</module>
-    <module>MainAppModule</module>
+    <module>entity-module</module>
+    <module>controller-module</module>
+    <module>service-module</module>
+    <module>integration-test-module</module>
+    <module>messaging-module</module>
+    <module>init-module</module>
+    <module>main-app-module</module>
   </modules>
   <packaging>pom</packaging>
 

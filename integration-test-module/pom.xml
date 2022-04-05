@@ -9,23 +9,23 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>IntegrationTestModule</artifactId>
+    <artifactId>integration-test-module</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>com.kashigin.stanislav</groupId>
-            <artifactId>ControllerModule</artifactId>
+            <artifactId>controller-module</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.kashigin.stanislav</groupId>
-            <artifactId>MessagingModule</artifactId>
+            <artifactId>messaging-module</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.kashigin.stanislav</groupId>
-            <artifactId>InitModule</artifactId>
+            <artifactId>init-module</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
