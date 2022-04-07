@@ -15,6 +15,7 @@
     <module>messaging-module</module>
     <module>init-module</module>
     <module>main-app-module</module>
+    <module>dao-module</module>
   </modules>
   <packaging>pom</packaging>
 

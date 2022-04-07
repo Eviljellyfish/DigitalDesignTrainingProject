@@ -1,3 +1,5 @@
+package com.kashigin.stanislav.entity;
+
 import java.util.List;
 
 public class OrgStructure {

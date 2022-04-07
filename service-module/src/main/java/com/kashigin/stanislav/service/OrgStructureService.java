@@ -1,3 +1,6 @@
+package com.kashigin.stanislav.service;
+
+import com.kashigin.stanislav.entity.*;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
