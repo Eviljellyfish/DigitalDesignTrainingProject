@@ -6,3 +6,6 @@ My implementation of practice project from DigitalDesign
 
 ## Class diagram
 ![Class diagram](ClassDiagram.png)
+
+## DataBase diaram
+![DataBase diaram](DBDiagram.png)
