@@ -15,13 +15,13 @@ public class UserDao implements BaseDao<User> {
     }
 
     @Override
-    public boolean save(User userDao) {
-        return false;
+    public void save(User userDao) {
+
     }
 
     @Override
-    public boolean update(User userDao, String[] param) {
-        return false;
+    public void update(int id, User userDao) {
+
     }
 
     @Override

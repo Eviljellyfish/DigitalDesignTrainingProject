@@ -8,9 +8,9 @@ public interface BaseDao<T> {
 
     List<T> getAll();
 
-    boolean save(T t);
+    void save(T t);
 
-    boolean update(T t, String[] param);
+    void update(int id, T t);
 
     void delete(T t);
 }

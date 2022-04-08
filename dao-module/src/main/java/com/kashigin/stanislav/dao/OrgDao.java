@@ -35,7 +35,7 @@ public class OrgDao implements BaseDao<OrgStructure> {
         List<OrgStructure> orgs = new ArrayList<>();
         try (Connection connection = DbConnection.getConnection()) {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from org");
+            ResultSet rs = statement.executeQuery("select * from org_structure");
             while(rs.next()) {
                 OrgStructure org = new OrgStructure();
                 org.setName(rs.getString(2));
@@ -50,17 +50,40 @@ public class OrgDao implements BaseDao<OrgStructure> {
     }
 
     @Override
-    public boolean save(OrgStructure orgDao) {
-        return false;
+    public void save(OrgStructure orgStructure) {
+        try(Connection connection = DbConnection.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("insert into org_structure values(?, ?, ?)");
+            ps.setString(1, orgStructure.getName());
+            ps.setInt(2, orgStructure.getHead().getId());
+            ps.setInt(3, orgStructure.getParent().getId());
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public boolean update(OrgStructure orgDao, String[] param) {
-        return false;
+    public void update(int id, OrgStructure orgStructure) {
+        try(Connection connection = DbConnection.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("update org_structure set name=?, user_id=?, parent_id=? where id = ?");
+            ps.setString(1, orgStructure.getName());
+            ps.setInt(2, orgStructure.getHead().getId());
+            ps.setInt(3, orgStructure.getParent().getId());
+            ps.setInt(4, orgStructure.getId());
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void delete(OrgStructure orgDao) {
-
+    public void delete(OrgStructure orgStructure) {
+        try(Connection connection = DbConnection.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("delete from org_structure where id = ?");
+            ps.setInt(1, orgStructure.getId());
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
