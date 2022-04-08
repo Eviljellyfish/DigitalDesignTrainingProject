@@ -40,10 +40,13 @@ public class UserDao implements BaseDao<User> {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("select * from users");
             while(rs.next()) {
-//                User users = new OrgStructure();
-//                users.setName(rs.getString(2));
-//                users.setHead(rs.getObject(3, User.class));
-//                users.setParent(rs.getObject(4, OrgStructure.class));
+                User user = new User();
+                user.setFirstName(rs.getString(2));
+                user.setSecondName(rs.getString(3));
+                user.setRole(UserRoleEnum.valueOf(rs.getString(4)));
+                user.setOrg(rs.getObject(5, OrgStructure.class));
+                user.setPosition(rs.getString(6));
+                users.add(user);
             }
         }
         catch (SQLException e) {
@@ -53,17 +56,44 @@ public class UserDao implements BaseDao<User> {
     }
 
     @Override
-    public void save(User userDao) {
-
+    public void save(User user) {
+        try(Connection connection = DbConnection.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("insert into org_structure values(?, ?, ?, ?, ?)");
+            ps.setString(1, user.getFirstName());
+            ps.setString(2, user.getSecondName());
+            ps.setInt(3, user.getRole().ordinal());
+            ps.setInt(4, user.getOrg().getId());
+            ps.setString(5, user.getPosition());
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void update(int id, User userDao) {
-
+    public void update(int id, User user) {
+        try(Connection connection = DbConnection.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("update org_structure set firstname=?, lastname=?, role_id=?, org_id=?, position=?  where id = ?");
+            ps.setString(1, user.getFirstName());
+            ps.setString(2, user.getSecondName());
+            ps.setInt(3, user.getRole().ordinal());
+            ps.setInt(4, user.getOrg().getId());
+            ps.setString(5, user.getPosition());
+            ps.setInt(6, user.getId());
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void delete(User userDao) {
-
+    public void delete(User user) {
+        try(Connection connection = DbConnection.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("delete from users where id = ?");
+            ps.setInt(1, user.getId());
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

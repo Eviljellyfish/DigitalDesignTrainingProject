@@ -41,6 +41,7 @@ public class OrgDao implements BaseDao<OrgStructure> {
                 org.setName(rs.getString(2));
                 org.setHead(rs.getObject(3, User.class));
                 org.setParent(rs.getObject(4, OrgStructure.class));
+                orgs.add(org);
             }
         }
         catch (SQLException e) {
