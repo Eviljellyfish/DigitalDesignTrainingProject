@@ -16,7 +16,7 @@
     <module>init-module</module>
     <module>main-app-module</module>
     <module>dao-module</module>
-      <module>servlet-module</module>
+    <module>servlet-module</module>
   </modules>
   <packaging>pom</packaging>
 
