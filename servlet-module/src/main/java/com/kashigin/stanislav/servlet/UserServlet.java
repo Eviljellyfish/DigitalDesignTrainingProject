@@ -63,13 +63,16 @@ public class UserServlet extends HttpServlet {
 
         UserModel user = objectMapper.readValue(body, UserModel.class);
 
-        userDao.save(user);
+        //userDao.save(user);
 
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
+        String id = req.getParameter("id");
+        if (id != null) {
+            userDao.delete(Integer.parseInt(id));
+        }
     }
 
     @Override

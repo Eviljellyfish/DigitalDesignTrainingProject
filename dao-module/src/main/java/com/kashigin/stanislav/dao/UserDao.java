@@ -78,6 +78,7 @@ public class UserDao implements BaseDao<UserModel> {
             ps.setInt(4, user.getOrgId());
             ps.setString(5, user.getPosition());
             ps.setInt(6, user.getId());
+            ps.executeQuery();
         }
         catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -85,10 +86,11 @@ public class UserDao implements BaseDao<UserModel> {
     }
 
     @Override
-    public void delete(UserModel user) {
+    public void delete(int id) {
         try(Connection connection = DbConnection.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("delete from users where id = ?");
-            ps.setInt(1, user.getId());
+            ps.setInt(1, id);
+            ps.executeQuery();
         }
         catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

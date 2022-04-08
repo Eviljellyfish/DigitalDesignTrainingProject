@@ -56,6 +56,7 @@ public class OrgDao implements BaseDao<OrgStructureModel> {
             ps.setString(1, orgStructure.getName());
             ps.setInt(2, orgStructure.getHeadId());
             ps.setInt(3, orgStructure.getParentId());
+            ps.executeQuery();
         }
         catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -77,10 +78,11 @@ public class OrgDao implements BaseDao<OrgStructureModel> {
     }
 
     @Override
-    public void delete(OrgStructureModel orgStructure) {
+    public void delete(int id) {
         try(Connection connection = DbConnection.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("delete from org_structure where id = ?");
-            ps.setInt(1, orgStructure.getId());
+            ps.setInt(1, id);
+            ps.executeQuery();
         }
         catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

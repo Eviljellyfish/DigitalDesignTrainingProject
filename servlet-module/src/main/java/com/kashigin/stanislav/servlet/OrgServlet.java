@@ -62,7 +62,10 @@ public class OrgServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
+        String id = req.getParameter("id");
+        if (id != null) {
+            orgDao.delete(Integer.parseInt(id));
+        }
     }
 
     @Override
