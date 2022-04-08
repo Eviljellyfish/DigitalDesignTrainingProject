@@ -3,7 +3,7 @@ package com.kashigin.stanislav.servlet;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.kashigin.stanislav.dao.OrgDao;
-import com.kashigin.stanislav.entity.OrgStructure;
+import com.kashigin.stanislav.dao.model.OrgStructureModel;
 import jakarta.servlet.annotation.WebServlet;
 
 import jakarta.servlet.ServletException;
@@ -29,7 +29,7 @@ public class OrgServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
         if (id != null) {
-            OrgStructure org = orgDao.get(Integer.parseInt(id));
+            OrgStructureModel org = orgDao.get(Integer.parseInt(id));
             try(PrintWriter writer = resp.getWriter()) {
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");
@@ -38,7 +38,7 @@ public class OrgServlet extends HttpServlet {
             }
         }
         else {
-            List<OrgStructure> org = orgDao.getAll();
+            List<OrgStructureModel> org = orgDao.getAll();
             try(PrintWriter writer = resp.getWriter()) {
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");
@@ -54,7 +54,7 @@ public class OrgServlet extends HttpServlet {
 
         System.out.println(body);
 
-        OrgStructure org = objectMapper.readValue(body, OrgStructure.class);
+        OrgStructureModel org = objectMapper.readValue(body, OrgStructureModel.class);
 
         orgDao.save(org);
 
