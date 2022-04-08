@@ -1,30 +1,31 @@
 package com.kashigin.stanislav.dao;
 
+import com.kashigin.stanislav.entity.User;
 import java.util.List;
 
-public class UserDao implements BaseDao<UserDao> {
+public class UserDao implements BaseDao<User> {
     @Override
-    public UserDao get(int id) {
+    public User get(int id) {
         return null;
     }
 
     @Override
-    public List<UserDao> getAll() {
+    public List<User> getAll() {
         return null;
     }
 
     @Override
-    public boolean save(UserDao userDao) {
+    public boolean save(User userDao) {
         return false;
     }
 
     @Override
-    public boolean update(UserDao userDao, String[] param) {
+    public boolean update(User userDao, String[] param) {
         return false;
     }
 
     @Override
-    public void delete(UserDao userDao) {
+    public void delete(User userDao) {
 
     }
 }
