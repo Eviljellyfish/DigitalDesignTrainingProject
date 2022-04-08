@@ -10,7 +10,7 @@ public interface BaseDao<T> {
 
     void save(T t);
 
-    void update(int id, T t);
+    void update(T t);
 
     void delete(int id);
 }

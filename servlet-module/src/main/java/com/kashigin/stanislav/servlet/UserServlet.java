@@ -63,7 +63,7 @@ public class UserServlet extends HttpServlet {
 
         UserModel user = objectMapper.readValue(body, UserModel.class);
 
-        //userDao.save(user);
+        userDao.save(user);
 
     }
 
@@ -77,6 +77,12 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPut(req, resp);
+        String body = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+
+        System.out.println(body);
+
+        UserModel user = objectMapper.readValue(body, UserModel.class);
+
+        userDao.update(user);
     }
 }

@@ -70,6 +70,12 @@ public class OrgServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPut(req, resp);
+        String body = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+
+        System.out.println(body);
+
+        OrgStructureModel org = objectMapper.readValue(body, OrgStructureModel.class);
+
+        orgDao.update(org);
     }
 }

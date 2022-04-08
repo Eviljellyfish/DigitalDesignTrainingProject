@@ -52,7 +52,7 @@ public class OrgDao implements BaseDao<OrgStructureModel> {
     @Override
     public void save(OrgStructureModel orgStructure) {
         try(Connection connection = DbConnection.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement("insert into org_structure values(?, ?, ?)");
+            PreparedStatement ps = connection.prepareStatement("insert into org_structure (name, user_id, parent_org_id) values(?, ?, ?)");
             ps.setString(1, orgStructure.getName());
             ps.setInt(2, orgStructure.getHeadId());
             ps.setInt(3, orgStructure.getParentId());
@@ -64,13 +64,14 @@ public class OrgDao implements BaseDao<OrgStructureModel> {
     }
 
     @Override
-    public void update(int id, OrgStructureModel orgStructure) {
+    public void update(OrgStructureModel orgStructure) {
         try(Connection connection = DbConnection.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement("update org_structure set name=?, user_id=?, parent_id=? where id = ?");
+            PreparedStatement ps = connection.prepareStatement("update org_structure set name=?, user_id=?, parent_org_id=? where id = ?");
             ps.setString(1, orgStructure.getName());
             ps.setInt(2, orgStructure.getHeadId());
             ps.setInt(3, orgStructure.getParentId());
             ps.setInt(4, orgStructure.getId());
+            ps.executeQuery();
         }
         catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

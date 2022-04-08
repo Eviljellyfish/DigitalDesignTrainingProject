@@ -56,7 +56,7 @@ public class UserDao implements BaseDao<UserModel> {
     @Override
     public void save(UserModel user) {
         try(Connection connection = DbConnection.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement("insert into org_structure values(?, ?, ?, ?, ?)");
+            PreparedStatement ps = connection.prepareStatement("insert into org_structure (firstname, lastname, role_id, org_id, position) values(?, ?, ?, ?, ?)");
             ps.setString(1, user.getFirstName());
             ps.setString(2, user.getSecondName());
             ps.setInt(3, user.getRoleId());
@@ -69,7 +69,7 @@ public class UserDao implements BaseDao<UserModel> {
     }
 
     @Override
-    public void update(int id, UserModel user) {
+    public void update(UserModel user) {
         try(Connection connection = DbConnection.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("update org_structure set firstname=?, lastname=?, role_id=?, org_id=?, position=?  where id = ?");
             ps.setString(1, user.getFirstName());
