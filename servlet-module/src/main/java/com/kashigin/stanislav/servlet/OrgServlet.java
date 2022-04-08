@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet(name="OrgServlet", urlPatterns = "/Org")
+@WebServlet(name="OrgServlet", urlPatterns = "/org")
 public class OrgServlet extends HttpServlet {
 
     private static OrgDao orgDao = new OrgDao();
