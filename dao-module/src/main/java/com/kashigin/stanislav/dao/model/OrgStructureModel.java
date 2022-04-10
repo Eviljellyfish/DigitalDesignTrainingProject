@@ -4,14 +4,14 @@ package com.kashigin.stanislav.dao.model;
 public class OrgStructureModel {
     private int id;
     private String name;
-    private int headId;
-    private int parentId;
+    private int head;
+    private int parent;
 
     public OrgStructureModel(int id, String name, int headId, int parentId) {
         this.id = id;
         this.name = name;
-        this.headId = headId;
-        this.parentId = parentId;
+        this.head = headId;
+        this.parent = parentId;
     }
 
     public OrgStructureModel() {
@@ -29,19 +29,19 @@ public class OrgStructureModel {
         this.name = name;
     }
 
-    public int getHeadId() {
-        return headId;
+    public int getHead() {
+        return head;
     }
 
-    public void setHeadId(int headId) {
-        this.headId = headId;
+    public void setHead(int head) {
+        this.head = head;
     }
 
-    public int getParentId() {
-        return parentId;
+    public int getParent() {
+        return parent;
     }
 
-    public void setParentId(int parentId) {
-        this.parentId = parentId;
+    public void setParent(int parent) {
+        this.parent = parent;
     }
 }

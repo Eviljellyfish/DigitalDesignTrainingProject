@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.modelmapper.ModelMapper;
+import com.kashigin.stanislav.entity.OrgStructure;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,7 +30,7 @@ public class OrgServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
         if (id != null) {
-            OrgStructureModel org = orgDao.get(Integer.parseInt(id));
+            OrgStructure org = orgDao.get(Integer.parseInt(id));
             try(PrintWriter writer = resp.getWriter()) {
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");
@@ -38,7 +39,7 @@ public class OrgServlet extends HttpServlet {
             }
         }
         else {
-            List<OrgStructureModel> org = orgDao.getAll();
+            List<OrgStructure> org = orgDao.getAll();
             try(PrintWriter writer = resp.getWriter()) {
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");
@@ -54,7 +55,10 @@ public class OrgServlet extends HttpServlet {
 
         System.out.println(body);
 
-        OrgStructureModel org = objectMapper.readValue(body, OrgStructureModel.class);
+        OrgStructureModel orgStructureModel = objectMapper.readValue(body, OrgStructureModel.class);
+
+        OrgStructure org = modelMapper.map(orgStructureModel, OrgStructure.class);
+
 
         orgDao.save(org);
 
@@ -74,7 +78,9 @@ public class OrgServlet extends HttpServlet {
 
         System.out.println(body);
 
-        OrgStructureModel org = objectMapper.readValue(body, OrgStructureModel.class);
+        OrgStructureModel orgStructureModel = objectMapper.readValue(body, OrgStructureModel.class);
+
+        OrgStructure org = modelMapper.map(orgStructureModel, OrgStructure.class);
 
         orgDao.update(org);
     }

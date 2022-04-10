@@ -4,16 +4,16 @@ public class UserModel {
     private int id;
     private String firstName;
     private String secondName;
-    private int roleId;
-    private int orgId;
+    private int role;
+    private int org;
     private String position;
 
     public UserModel(int id, String firstName, String secondName, int roleIid, int orgId, String position) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
-        this.roleId = roleId;
-        this.orgId = orgId;
+        this.role = role;
+        this.org = orgId;
         this.position = position;
     }
 
@@ -41,20 +41,20 @@ public class UserModel {
         this.secondName = secondName;
     }
 
-    public int getRoleId() {
-        return roleId;
+    public int getRole() {
+        return role;
     }
 
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
+    public void setRole(int role) {
+        this.role = role;
     }
 
-    public int getOrgId() {
-        return orgId;
+    public int getOrg() {
+        return org;
     }
 
-    public void setOrgId(int orgId) {
-        this.orgId = orgId;
+    public void setOrg(int org) {
+        this.org = org;
     }
 
     public String getPosition() {

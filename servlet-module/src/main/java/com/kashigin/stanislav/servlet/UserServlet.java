@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.kashigin.stanislav.dao.UserDao;
 import com.kashigin.stanislav.dao.model.UserModel;
+import com.kashigin.stanislav.entity.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -36,7 +37,7 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
         if (id != null) {
-            UserModel user = userDao.get(Integer.parseInt(id));
+            User user = userDao.get(Integer.parseInt(id));
             try(PrintWriter writer = resp.getWriter()) {
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");
@@ -45,7 +46,7 @@ public class UserServlet extends HttpServlet {
             }
         }
         else {
-            List<UserModel> user = userDao.getAll();
+            List<User> user = userDao.getAll();
             try(PrintWriter writer = resp.getWriter()) {
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");
@@ -61,7 +62,7 @@ public class UserServlet extends HttpServlet {
 
         System.out.println(body);
 
-        UserModel user = objectMapper.readValue(body, UserModel.class);
+        User user = objectMapper.readValue(body, User.class);
 
         userDao.save(user);
 
@@ -81,7 +82,7 @@ public class UserServlet extends HttpServlet {
 
         System.out.println(body);
 
-        UserModel user = objectMapper.readValue(body, UserModel.class);
+        User user = objectMapper.readValue(body, User.class);
 
         userDao.update(user);
     }
