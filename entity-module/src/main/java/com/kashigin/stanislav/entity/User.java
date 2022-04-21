@@ -1,14 +1,34 @@
 package com.kashigin.stanislav.entity;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "user", schema = "project")
 public class User {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "first_name", nullable = false)
     private String firstName;
+
+    @Column(name = "second_name", nullable = false)
     private String secondName;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
     private UserRoleEnum role;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
     private OrgStructure org;
+
+    @Column(name = "position")
     private String position;
 
-    public User(int id, String firstName, String secondName, UserRoleEnum role, OrgStructure org, String position) {
+    public User(Long id, String firstName, String secondName, UserRoleEnum role, OrgStructure org, String position) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
@@ -21,8 +41,12 @@ public class User {
 
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {

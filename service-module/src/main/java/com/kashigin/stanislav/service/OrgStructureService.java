@@ -1,13 +1,23 @@
 package com.kashigin.stanislav.service;
 
 import com.kashigin.stanislav.entity.*;
+import com.kashigin.stanislav.dao.repository.OrgStructureRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 
+@Service
 public class OrgStructureService {
 
-    public boolean addOrg() {
+    @Autowired
+    private OrgStructureRepository orgStructureRepository;
+
+
+
+
+    /*public boolean addOrg() {
         throw new NotImplementedException();
     }
 
@@ -45,5 +55,5 @@ public class OrgStructureService {
 
     public List<OrgStructure> getSubOrgs(int id) {
         throw new NotImplementedException();
-    }
+    }*/
 }

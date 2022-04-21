@@ -30,7 +30,7 @@ public class OrgServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
         if (id != null) {
-            OrgStructure org = orgDao.get(Integer.parseInt(id));
+            OrgStructure org = orgDao.get(Long.parseLong(id));
             try(PrintWriter writer = resp.getWriter()) {
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");
@@ -52,14 +52,9 @@ public class OrgServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String body = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-
         System.out.println(body);
-
         OrgStructureModel orgStructureModel = objectMapper.readValue(body, OrgStructureModel.class);
-
         OrgStructure org = modelMapper.map(orgStructureModel, OrgStructure.class);
-
-
         orgDao.save(org);
 
     }
@@ -68,7 +63,7 @@ public class OrgServlet extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
         if (id != null) {
-            orgDao.delete(Integer.parseInt(id));
+            orgDao.delete(Long.parseLong(id));
         }
     }
 

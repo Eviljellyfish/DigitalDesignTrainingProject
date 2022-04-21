@@ -1,33 +1,30 @@
 package com.kashigin.stanislav.dao;
 
-import com.kashigin.stanislav.dao.model.OrgStructureModel;
 import com.kashigin.stanislav.entity.OrgStructure;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrgDao implements BaseDao<OrgStructure> {
+public class OrgDao implements BaseDao<OrgStructure, Long> {
 
     private static UserDao userDao = new UserDao();
 
     @Override
-    public OrgStructure get(int id) {
+    public OrgStructure get(Long id) {
         OrgStructure org = null;
         try (Connection connection = DbConnection.getConnection()) {
 
             PreparedStatement ps = connection.prepareStatement("select * from org where id = ?");
-            ps.setInt(1, id);
+            ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 org = new OrgStructure();
-//                org.setName(rs.getString(2));
-//                org.setHeadId(rs.getInt(3));
-//                org.setParentId(rs.getInt(4));
+                org.setId(rs.getLong(1));
                 org.setName(rs.getString(2));
-                org.setHead(userDao.get(rs.getInt(3)));
-                org.setParent(this.get(rs.getInt(4)));
+                org.setHead(userDao.get(rs.getLong(3)));
+                org.setParent(this.get(rs.getLong(4)));
             }
         }
         catch (SQLException | ClassNotFoundException e) {
@@ -44,12 +41,10 @@ public class OrgDao implements BaseDao<OrgStructure> {
             ResultSet rs = statement.executeQuery("select * from org_structure");
             while(rs.next()) {
                 OrgStructure org = new OrgStructure();
-//                org.setName(rs.getString(2));
-//                org.setHeadId(rs.getInt(3));
-//                org.setParentId(rs.getInt(4));
+                org.setId(rs.getLong(1));
                 org.setName(rs.getString(2));
-                org.setHead(userDao.get(rs.getInt(3)));
-                org.setParent(this.get(rs.getInt(4)));
+                org.setHead(userDao.get(rs.getLong(3)));
+                org.setParent(this.get(rs.getLong(4)));
                 orgs.add(org);
             }
         }
@@ -62,10 +57,21 @@ public class OrgDao implements BaseDao<OrgStructure> {
     @Override
     public void save(OrgStructure orgStructure) {
         try(Connection connection = DbConnection.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement("insert into org_structure (name, user_id, parent_org_id) values(?, ?, ?)");
-            ps.setString(1, orgStructure.getName());
-            ps.setInt(2, orgStructure.getHead().getId());
-            ps.setInt(3, orgStructure.getParent().getId());
+            PreparedStatement ps = connection.prepareStatement("insert into org_structure (id, name, user_id, parent_org_id) values(DEFAULT, ?, ?, ?)");
+
+            if (orgStructure.getName() != null)
+                ps.setString(1, orgStructure.getName());
+            else
+                ps.setNull(1, Types.NULL);
+            if (orgStructure.getHead() != null)
+                ps.setLong(2, orgStructure.getHead().getId());
+            else
+                ps.setNull(2, Types.NULL);
+            if (orgStructure.getParent() != null)
+                ps.setLong(3, orgStructure.getParent().getId());
+            else
+                ps.setNull(3, Types.NULL);
+
             ps.executeQuery();
         }
         catch (SQLException | ClassNotFoundException e) {
@@ -77,10 +83,21 @@ public class OrgDao implements BaseDao<OrgStructure> {
     public void update(OrgStructure orgStructure) {
         try(Connection connection = DbConnection.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("update org_structure set name=?, user_id=?, parent_org_id=? where id = ?");
-            ps.setString(1, orgStructure.getName());
-            ps.setInt(2, orgStructure.getHead().getId());
-            ps.setInt(3, orgStructure.getParent().getId());
-            ps.setInt(4, orgStructure.getId());
+
+            if (orgStructure.getName() != null)
+                ps.setString(1, orgStructure.getName());
+            else
+                ps.setNull(1, Types.NULL);
+            if (orgStructure.getHead() != null)
+                ps.setLong(2, orgStructure.getHead().getId());
+            else
+                ps.setNull(2, Types.NULL);
+            if (orgStructure.getParent() != null)
+                ps.setLong(3, orgStructure.getParent().getId());
+            else
+                ps.setNull(3, Types.NULL);
+            ps.setLong(4, orgStructure.getId());
+
             ps.executeQuery();
         }
         catch (SQLException | ClassNotFoundException e) {
@@ -89,10 +106,10 @@ public class OrgDao implements BaseDao<OrgStructure> {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         try(Connection connection = DbConnection.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("delete from org_structure where id = ?");
-            ps.setInt(1, id);
+            ps.setLong(1, id);
             ps.executeQuery();
         }
         catch (SQLException | ClassNotFoundException e) {

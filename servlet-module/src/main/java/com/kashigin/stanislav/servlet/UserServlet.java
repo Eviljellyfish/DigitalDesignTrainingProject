@@ -3,9 +3,7 @@ package com.kashigin.stanislav.servlet;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.kashigin.stanislav.dao.UserDao;
-import com.kashigin.stanislav.dao.model.UserModel;
 import com.kashigin.stanislav.entity.User;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,7 +24,7 @@ public class UserServlet extends HttpServlet {
     private  ModelMapper modelMapper;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         userDao = new UserDao();
         gson = new Gson();
         objectMapper = new ObjectMapper();
@@ -34,10 +32,10 @@ public class UserServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String id = req.getParameter("id");
         if (id != null) {
-            User user = userDao.get(Integer.parseInt(id));
+            User user = userDao.get(Long.parseLong(id));
             try(PrintWriter writer = resp.getWriter()) {
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");
@@ -57,27 +55,24 @@ public class UserServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String body = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-
         System.out.println(body);
-
         User user = objectMapper.readValue(body, User.class);
-
         userDao.save(user);
 
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
         String id = req.getParameter("id");
         if (id != null) {
-            userDao.delete(Integer.parseInt(id));
+            userDao.delete(Long.parseLong(id));
         }
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String body = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 
         System.out.println(body);

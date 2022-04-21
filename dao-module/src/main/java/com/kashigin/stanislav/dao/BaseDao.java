@@ -2,9 +2,9 @@ package com.kashigin.stanislav.dao;
 
 import java.util.List;
 
-public interface BaseDao<T> {
+public interface BaseDao<T, ID> {
 
-    T get(int id);
+    T get(ID id);
 
     List<T> getAll();
 
@@ -12,5 +12,5 @@ public interface BaseDao<T> {
 
     void update(T t);
 
-    void delete(int id);
+    void delete(ID id);
 }
