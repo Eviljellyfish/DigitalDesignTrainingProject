@@ -7,8 +7,8 @@ import com.kashigin.stanislav.service.*;
 
 import java.util.List;
 
-//@RestController
-//@RequestMapping(path = "orgs")
+@RestController
+@RequestMapping(path = "orgs")
 public class OrgStructureController {
 
     private final OrgStructureService orgStructureService;

@@ -9,35 +9,41 @@ import com.kashigin.stanislav.service.*;
 import java.util.List;
 import java.util.Optional;
 
-//@RestController
-//@RequestMapping(path = "users")
+@RestController
+@RequestMapping(path = "users")
 public class UserController {
-//
-//    private final UserService userService;
-//
-//    public UserController(UserService userService) {
-//        this.userService = userService;
-//    }
-//
-//    @PostMapping
-//    public boolean add(User user) {
-//        throw new NotImplementedException();
-//    }
-//
-//    @GetMapping(path = "{id}")
-//    public Optional<User> findById(@PathVariable Long id) {
-//        return userService.findUser(id);
-//    }
-//
-//    @PutMapping
-//    public boolean update(User user) {
-//        throw new NotImplementedException();
-//    }
-//
-//    @DeleteMapping
-//    public boolean delete(User user) {
-//        throw new NotImplementedException();
-//    }
+
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @PostMapping(consumes = "application/json")
+    public User add(@RequestBody User user) {
+        userService.addUser(user);
+        return user;
+    }
+
+    @GetMapping
+    public List<User> getAll() {
+        return userService.getAll();
+    }
+
+    @GetMapping(path = "{id}")
+    public Optional<User> findById(@PathVariable Long id) {
+        return userService.findUser(id);
+    }
+
+    @PutMapping
+    public User update(User user) {
+        throw new NotImplementedException();
+    }
+
+    @DeleteMapping(path = "{id}")
+    public void delete(@PathVariable long id) {
+        userService.deleteUser(id);
+    }
 
 
 }
