@@ -3,8 +3,8 @@ package com.kashigin.stanislav.entity;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "user", schema = "project")
+//@Entity
+//@Table(name = "user", schema = "project")
 public class User {
 
     @Id

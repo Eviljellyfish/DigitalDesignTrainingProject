@@ -4,8 +4,8 @@ package com.kashigin.stanislav.entity;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "org_structure", schema = "project")
+//@Entity
+//@Table(name = "org_structure", schema = "project")
 public class OrgStructure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
