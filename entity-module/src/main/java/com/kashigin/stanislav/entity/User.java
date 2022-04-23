@@ -4,12 +4,12 @@ package com.kashigin.stanislav.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -28,7 +28,7 @@ public class User {
     @Column(name = "position")
     private String position;
 
-    public User(Long id, String firstName, String secondName, UserRoleEnum role, OrgStructure org, String position) {
+    public User(long id, String firstName, String secondName, UserRoleEnum role, OrgStructure org, String position) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
@@ -41,11 +41,11 @@ public class User {
 
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

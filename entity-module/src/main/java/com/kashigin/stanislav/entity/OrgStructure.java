@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class OrgStructure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -22,7 +22,7 @@ public class OrgStructure {
     @JoinColumn(name = "parent_id")
     private OrgStructure parent;
 
-    public OrgStructure(Long id, String name, User head, OrgStructure parent) {
+    public OrgStructure(long id, String name, User head, OrgStructure parent) {
         this.id = id;
         this.name = name;
         this.head = head;
@@ -32,11 +32,11 @@ public class OrgStructure {
     public OrgStructure() {
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
