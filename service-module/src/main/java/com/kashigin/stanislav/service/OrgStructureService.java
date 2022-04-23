@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrgStructureService {
@@ -16,43 +17,36 @@ public class OrgStructureService {
         this.orgStructureRepository = orgStructureRepository;
     }
 
-    public boolean addOrg() {
-        throw new NotImplementedException();
+    public OrgStructure addOrg(OrgStructure orgStructure) {
+        orgStructureRepository.save(orgStructure);
+        return orgStructure;
     }
 
-    public boolean deleteOrg(int id) {
-        throw new NotImplementedException();
+    public void deleteOrg(long id) {
+        orgStructureRepository.deleteById(id);
     }
 
-    public OrgStructure findOrg(int id) {
-        throw new NotImplementedException();
+    public Optional<OrgStructure> findOrg(long id) {
+        return orgStructureRepository.findById(id);
+    }
+
+    public List<OrgStructure> getAll() {
+        return orgStructureRepository.findAll();
+    }
+
+    public OrgStructure updateOrg(OrgStructure orgStructure) {
+        return addOrg(orgStructure);
     }
 
     public List<OrgStructure> findOrgsByName(String name) {
         throw new NotImplementedException();
     }
 
-    public boolean changeOrgParent(int id, OrgStructure org) {
+    public List<User> getStaff(long id) {
         throw new NotImplementedException();
     }
 
-    public boolean changeOrgHead(int orgId, int userId) {
-        throw new NotImplementedException();
-    }
-
-    public boolean addSubOrg(int orgId, int subOrgId) {
-        throw new NotImplementedException();
-    }
-
-    public boolean changeOrgName(int id, String name) {
-        throw new NotImplementedException();
-    }
-
-    public List<User> getStaff(int id) {
-        throw new NotImplementedException();
-    }
-
-    public List<OrgStructure> getSubOrgs(int id) {
+    public List<OrgStructure> getSubOrgs(long id) {
         throw new NotImplementedException();
     }
 }

@@ -37,7 +37,7 @@ public class UserController {
 
     @PutMapping
     public User update(User user) {
-        throw new NotImplementedException();
+        return add(user);
     }
 
     @DeleteMapping(path = "{id}")
