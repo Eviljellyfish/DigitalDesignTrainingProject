@@ -4,8 +4,8 @@ package com.kashigin.stanislav.entity;
 
 import javax.persistence.*;
 
-//@Entity
-//@Table(name = "org_structure", schema = "project")
+@Entity
+@Table(name = "org_structure")
 public class OrgStructure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,11 +15,11 @@ public class OrgStructure {
     private String name;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "user_id")
     private User head;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "parent_id")
     private OrgStructure parent;
 
     public OrgStructure(Long id, String name, User head, OrgStructure parent) {

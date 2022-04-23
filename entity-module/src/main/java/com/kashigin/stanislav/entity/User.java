@@ -3,8 +3,8 @@ package com.kashigin.stanislav.entity;
 
 import javax.persistence.*;
 
-//@Entity
-//@Table(name = "user", schema = "project")
+@Entity
+@Table(name = "user")
 public class User {
 
     @Id
@@ -22,7 +22,7 @@ public class User {
     private UserRoleEnum role;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "org_id")
     private OrgStructure org;
 
     @Column(name = "position")
