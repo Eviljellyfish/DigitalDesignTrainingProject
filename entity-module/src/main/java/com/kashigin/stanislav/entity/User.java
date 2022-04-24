@@ -1,8 +1,13 @@
 package com.kashigin.stanislav.entity;
 
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @Entity
 @Table(name = "users")
 public class User {
@@ -21,7 +26,8 @@ public class User {
     @Column(name = "role", nullable = false)
     private UserRoleEnum role;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "org_id")
     private OrgStructure org;
 
