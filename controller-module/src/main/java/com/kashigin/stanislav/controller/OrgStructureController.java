@@ -34,8 +34,8 @@ public class OrgStructureController {
         return orgStructureService.findOrg(id);
     }
 
-    @PutMapping
-    public OrgStructure update(OrgStructure orgStructure) {
+    @PutMapping(consumes = "application/json")
+    public OrgStructure update(@RequestBody OrgStructure orgStructure) {
         return add(orgStructure);
     }
 
