@@ -3,14 +3,13 @@ package com.kashigin.stanislav.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+        property = "name")
 @Entity
 @Table(name = "org_structure")
 public class OrgStructure {
@@ -23,6 +22,7 @@ public class OrgStructure {
 
     @JsonIdentityReference(alwaysAsId = true)
     @OneToOne(fetch = FetchType.EAGER)
+    @MapsId
     @JoinColumn(name = "user_id")
     private User head;
 
@@ -36,6 +36,10 @@ public class OrgStructure {
         this.name = name;
         this.head = head;
         this.parent = parent;
+    }
+
+    public OrgStructure(String name) {
+        this.name = name;
     }
 
     public OrgStructure() {
