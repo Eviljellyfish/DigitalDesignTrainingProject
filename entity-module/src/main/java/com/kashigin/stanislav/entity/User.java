@@ -43,6 +43,12 @@ public class User {
         this.position = position;
     }
 
+    public User(String firstName, String secondName, UserRoleEnum role) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.role = role;
+    }
+
     public User() {
 
     }
