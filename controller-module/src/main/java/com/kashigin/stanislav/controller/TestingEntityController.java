@@ -4,6 +4,7 @@ import com.kashigin.stanislav.entity.TestingEntity;
 import com.kashigin.stanislav.service.TestingEntityService;
 import org.springframework.web.bind.annotation.*;
 
+@Deprecated
 @RestController
 @RequestMapping(path = "test")
 public class TestingEntityController {

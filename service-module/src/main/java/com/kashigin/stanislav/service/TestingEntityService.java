@@ -4,6 +4,7 @@ import com.kashigin.stanislav.dao.repository.TestingEntityRepository;
 import com.kashigin.stanislav.entity.TestingEntity;
 import org.springframework.stereotype.Service;
 
+@Deprecated
 @Service
 public class TestingEntityService {
 

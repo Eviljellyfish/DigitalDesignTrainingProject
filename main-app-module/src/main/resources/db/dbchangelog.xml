@@ -14,13 +14,13 @@
     </changeSet>
     <changeSet  id="project_role_data" author="kashigin">
         <insert tableName="role">
-            <column  name="name"  value="USER"/>
+            <column  name="name"  value="ROLE_USER"/>
         </insert>
         <insert tableName="role">
-            <column  name="name"  value="MODERATOR"/>
+            <column  name="name"  value="ROLE_MODERATOR"/>
         </insert>
         <insert tableName="role">
-            <column  name="name"  value="ADMIN"/>
+            <column  name="name"  value="ROLE_ADMIN"/>
         </insert>
     </changeSet>
     <changeSet  id="project_user" author="kashigin">

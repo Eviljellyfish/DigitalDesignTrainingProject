@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
 public class OrgDao implements BaseDao<OrgStructure, Long> {
 
     private static UserDao userDao = new UserDao();
