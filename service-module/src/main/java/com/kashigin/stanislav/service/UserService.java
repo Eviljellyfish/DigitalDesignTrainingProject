@@ -30,7 +30,7 @@ public class UserService {
     }
 
     public void deleteUser(long id) {
-        List<OrgStructure> controlledOrgs = new ArrayList<>(userRepository.findAllByHeadId(id));
+        List<OrgStructure> controlledOrgs = new ArrayList<>(orgStructureRepository.findAllByHeadId(id));
         for (OrgStructure org : controlledOrgs) {
             org.setHead(null);
         }

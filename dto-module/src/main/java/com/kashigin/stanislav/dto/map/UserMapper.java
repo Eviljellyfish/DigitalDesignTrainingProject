@@ -25,7 +25,7 @@ public class UserMapper implements Mapper<User, UserDto> {
     @Override
     public UserDto convertToDto(User user) {
         UserDto dto = new UserDto(user.getId(), user.getFirstName(),
-                                user.getSecondName(), user.getRole().getName());
+                                user.getSecondName(), user.getRole().getId());
         if (user.getOrg() != null)
             dto.setOrg(user.getOrg().getId());
         dto.setPosition(user.getPosition());

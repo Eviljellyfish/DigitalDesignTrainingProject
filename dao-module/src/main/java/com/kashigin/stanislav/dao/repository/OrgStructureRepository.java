@@ -22,4 +22,9 @@ public interface OrgStructureRepository extends JpaRepository<OrgStructure, Long
             "where u.org.id = ?1")
     Set<User> findStaff(long id);
 
+    @Query("select org " +
+            "from OrgStructure org " +
+            "where org.head.id = ?1")
+    Set<OrgStructure> findAllByHeadId(long id);
+
 }

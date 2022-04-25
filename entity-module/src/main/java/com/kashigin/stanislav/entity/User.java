@@ -1,8 +1,5 @@
 package com.kashigin.stanislav.entity;
 
-
-import com.fasterxml.jackson.annotation.*;
-
 import javax.persistence.*;
 
 @Entity

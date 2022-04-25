@@ -7,8 +7,11 @@
       http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.5.xsd">
     <changeSet  id="project_role" author="kashigin">
         <createTable tableName="role">
+            <column name="id" autoIncrement="true" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="role_pkey" unique="true"/>
+            </column>
             <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="role_pkey"/>
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
@@ -25,8 +28,8 @@
     </changeSet>
     <changeSet  id="project_user" author="kashigin">
         <createTable tableName="users">
-            <column autoIncrement="true" name="id" type="INTEGER">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="user_pkey"/>
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_pkey" unique="true"/>
             </column>
             <column name="first_name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
@@ -35,33 +38,53 @@
             <column name="second_name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="role" type="VARCHAR(255)">
-                <constraints foreignKeyName="fk_user_role" references="role(name)"/>
+            <column name="role" type="BIGINT">
+                <constraints foreignKeyName="fk_user_role" references="role(id)"/>
             </column>
         </createTable>
     </changeSet>
     <changeSet  id="project_orgs" author="kashigin">
         <createTable tableName="org_structure">
-            <column autoIncrement="true" name="id" type="INTEGER">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="org_pkey"/>
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="org_pkey" unique="true"/>
             </column>
             <column name="name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="user_id" type="INTEGER">
+            <column name="user_id" type="BIGINT">
                 <constraints nullable="true" foreignKeyName="fk_org_user" references="users(id)"/>
             </column>
-            <column name="parent_id" type="INTEGER">
+            <column name="parent_id" type="BIGINT">
                 <constraints nullable="true" foreignKeyName="fk_org_org" references="org_structure(id)"/>
             </column>
         </createTable>
         <addColumn tableName="users">
-            <column name="org_id" type="INTEGER">
+            <column name="org_id" type="BIGINT">
                 <constraints nullable="true" foreignKeyName="fk_user_org" references="org_structure(id)"/>
             </column>
             <column name="position" type="VARCHAR(255)">
                 <constraints  nullable="true"/>
             </column>
         </addColumn>
+    </changeSet>
+    <changeSet id="project_positions" author="kashigin">
+        <createTable tableName="positions">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="positions_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="project_positions_orgs" author="kashigin">
+        <createTable tableName="orgs_positions">
+            <column name="org_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_orgpos_org" references="org_structure(id)"/>
+            </column>
+            <column name="position_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_orgpos_pos" references="positions(id)"/>
+            </column>
+        </createTable>
     </changeSet>
 </databaseChangeLog>

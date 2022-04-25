@@ -36,9 +36,9 @@ public class RoleController {
                 collect(Collectors.toList());
     }
 
-    @GetMapping(path = "{name}")
-    public Optional<RoleDto> findById(@PathVariable String name) {
-        return roleService.find(name).map(role -> roleMapper.convertToDto(role));
+    @GetMapping(path = "{id}")
+    public Optional<RoleDto> findById(@PathVariable long id) {
+        return roleService.find(id).map(role -> roleMapper.convertToDto(role));
     }
 
     @PutMapping(consumes = "application/json")
@@ -46,8 +46,8 @@ public class RoleController {
         return add(role);
     }
 
-    @DeleteMapping(path = "{name}")
-    public void delete(@PathVariable String name) {
-        roleService.delete(name);
+    @DeleteMapping(path = "{id}")
+    public void delete(@PathVariable long id) {
+        roleService.delete(id);
     }
 }

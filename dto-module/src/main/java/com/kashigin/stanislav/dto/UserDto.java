@@ -13,7 +13,7 @@ public class UserDto {
 
     private String secondName;
 
-    private String role;
+    private long role;
 
     private long org;
 
@@ -22,14 +22,14 @@ public class UserDto {
     public UserDto() {
     }
 
-    public UserDto(long id, String firstName, String secondName, String role) {
+    public UserDto(long id, String firstName, String secondName, long role) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
         this.role = role;
     }
 
-    public UserDto(long id, String firstName, String secondName, String role, long org, String position) {
+    public UserDto(long id, String firstName, String secondName, long role, long org, String position) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
@@ -62,11 +62,11 @@ public class UserDto {
         this.secondName = secondName;
     }
 
-    public String getRole() {
+    public long getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(long role) {
         this.role = role;
     }
 
