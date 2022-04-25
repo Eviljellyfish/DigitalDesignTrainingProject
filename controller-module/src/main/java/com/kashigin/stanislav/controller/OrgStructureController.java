@@ -7,6 +7,7 @@ import com.kashigin.stanislav.service.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/api/v1/orgs")
@@ -37,6 +38,11 @@ public class OrgStructureController {
     @PutMapping(consumes = "application/json")
     public OrgStructure update(@RequestBody OrgStructure orgStructure) {
         return add(orgStructure);
+    }
+
+    @GetMapping(path = "parent/{id}")
+    public Set<OrgStructure> findByParent(@PathVariable long id) {
+        return orgStructureService.findAllByParentId(id);
     }
 
     @DeleteMapping(path = "{id}")

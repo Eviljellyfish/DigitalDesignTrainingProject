@@ -7,6 +7,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class OrgStructureService {
@@ -20,6 +21,10 @@ public class OrgStructureService {
     public OrgStructure addOrg(OrgStructure orgStructure) {
         orgStructureRepository.save(orgStructure);
         return orgStructure;
+    }
+
+    public Set<OrgStructure> findAllByParentId(long id) {
+        return orgStructureRepository.findAllByParentId(id);
     }
 
     public void deleteOrg(long id) {
@@ -46,7 +51,4 @@ public class OrgStructureService {
         throw new NotImplementedException();
     }
 
-    public List<OrgStructure> getSubOrgs(long id) {
-        throw new NotImplementedException();
-    }
 }
