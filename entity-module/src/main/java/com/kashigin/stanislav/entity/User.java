@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
 @Entity
 @Table(name = "users")
 public class User {

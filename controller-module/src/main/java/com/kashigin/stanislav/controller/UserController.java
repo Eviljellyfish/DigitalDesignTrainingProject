@@ -23,8 +23,7 @@ public class UserController {
 
     @PostMapping(consumes = "application/json")
     public UserDto add(@RequestBody UserDto user) {
-        userService.addUser(userMapper.convertToModel(user));
-        return user;
+        return userMapper.convertToDto(userService.addUser(userMapper.convertToModel(user)));
     }
 
     @GetMapping
