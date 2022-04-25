@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "name")
+        property = "id")
 @Entity
 @Table(name = "org_structure")
 public class OrgStructure {
@@ -22,7 +22,6 @@ public class OrgStructure {
 
     @JsonIdentityReference(alwaysAsId = true)
     @OneToOne(fetch = FetchType.EAGER)
-    @MapsId
     @JoinColumn(name = "user_id")
     private User head;
 
