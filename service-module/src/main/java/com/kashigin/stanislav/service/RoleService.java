@@ -4,6 +4,9 @@ import com.kashigin.stanislav.dao.repository.RoleRepository;
 import com.kashigin.stanislav.entity.Role;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class RoleService {
 
@@ -18,9 +21,14 @@ public class RoleService {
         return role;
     }
 
-    public Role find(String name) {
-        return roleRepository.findById(name).get();
+    public Optional<Role> find(String name) {
+        return roleRepository.findById(name);
     }
+
+    public List<Role> findAll() {
+        return roleRepository.findAll();
+    }
+
 
     public void delete(String name) {
         roleRepository.deleteById(name);

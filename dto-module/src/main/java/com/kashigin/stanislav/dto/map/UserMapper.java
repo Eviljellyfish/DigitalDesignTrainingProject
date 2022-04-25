@@ -35,7 +35,7 @@ public class UserMapper implements Mapper<User, UserDto> {
     @Override
     public User convertToModel(UserDto userDto) {
         User user = modelMapper.map(userDto, User.class);
-        user.setRole(roleService.find(userDto.getRole()));
+        user.setRole(roleService.find(userDto.getRole()).get());
         if (userDto.getOrg() != 0)
             user.setOrg(orgStructureService.findOrg(userDto.getOrg()).get());
         return user;
