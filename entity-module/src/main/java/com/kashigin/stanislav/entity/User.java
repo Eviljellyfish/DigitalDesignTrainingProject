@@ -2,6 +2,7 @@ package com.kashigin.stanislav.entity;
 
 
 import com.fasterxml.jackson.annotation.*;
+import com.kashigin.stanislav.entity.util.Role;
 
 import javax.persistence.*;
 
@@ -22,9 +23,9 @@ public class User {
     @Column(name = "second_name", nullable = false)
     private String secondName;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    private UserRoleEnum role;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role", nullable = false)
+    private Role role;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -34,7 +35,7 @@ public class User {
     @Column(name = "position")
     private String position;
 
-    public User(long id, String firstName, String secondName, UserRoleEnum role, OrgStructure org, String position) {
+    public User(long id, String firstName, String secondName, Role role, OrgStructure org, String position) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
@@ -43,7 +44,7 @@ public class User {
         this.position = position;
     }
 
-    public User(String firstName, String secondName, UserRoleEnum role) {
+    public User(String firstName, String secondName, Role role) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.role = role;
@@ -77,11 +78,11 @@ public class User {
         this.secondName = secondName;
     }
 
-    public UserRoleEnum getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(UserRoleEnum role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

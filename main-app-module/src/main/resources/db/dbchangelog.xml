@@ -7,11 +7,8 @@
       http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.5.xsd">
     <changeSet  id="project_role" author="kashigin">
         <createTable tableName="role">
-            <column autoIncrement="true" name="id" type="INTEGER">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="role_pkey"/>
-            </column>
             <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="role_pkey"/>
             </column>
         </createTable>
     </changeSet>
@@ -31,15 +28,15 @@
             <column autoIncrement="true" name="id" type="INTEGER">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="user_pkey"/>
             </column>
-            <column name="firstname" type="VARCHAR(255)">
+            <column name="first_name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="lastname" type="VARCHAR(255)">
+            <column name="second_name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="role_id" type="INTEGER">
-                <constraints foreignKeyName="fk_user_role" references="role(id)"/>
+            <column name="role" type="VARCHAR(255)">
+                <constraints foreignKeyName="fk_user_role" references="role(name)"/>
             </column>
         </createTable>
     </changeSet>
@@ -54,7 +51,7 @@
             <column name="user_id" type="INTEGER">
                 <constraints nullable="true" foreignKeyName="fk_org_user" references="users(id)"/>
             </column>
-            <column name="parent_org_id" type="INTEGER">
+            <column name="parent_id" type="INTEGER">
                 <constraints nullable="true" foreignKeyName="fk_org_org" references="org_structure(id)"/>
             </column>
         </createTable>
