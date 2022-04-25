@@ -8,6 +8,7 @@ import com.kashigin.stanislav.service.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/api/v1/users")
@@ -27,13 +28,19 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAll() {
-        return userService.getAll();
+    public List<UserDto> getAll() {
+        return userService.
+                getAll().
+                stream().
+                map(user -> userMapper.convertToDto(user)).
+                collect(Collectors.toList());
     }
 
     @GetMapping(path = "{id}")
-    public Optional<User> findById(@PathVariable Long id) {
-        return userService.findUser(id);
+    public Optional<UserDto> findById(@PathVariable Long id) {
+        return userService.
+                findUser(id).
+                map(user -> userMapper.convertToDto(user));
     }
 
     @PutMapping(consumes = "application/json")

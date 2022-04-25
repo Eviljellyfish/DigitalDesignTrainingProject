@@ -19,6 +19,11 @@ public class OrgDto {
     public OrgDto() {
     }
 
+    public OrgDto(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public OrgDto(long id, String name, long head, long parent) {
         this.id = id;
         this.name = name;

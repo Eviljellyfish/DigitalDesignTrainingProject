@@ -1,5 +1,7 @@
 package com.kashigin.stanislav.controller;
 
+import com.kashigin.stanislav.dto.OrgDto;
+import com.kashigin.stanislav.dto.map.OrgMapper;
 import org.springframework.web.bind.annotation.*;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import com.kashigin.stanislav.entity.*;
@@ -8,6 +10,7 @@ import com.kashigin.stanislav.service.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/api/v1/orgs")
@@ -15,34 +18,46 @@ public class OrgStructureController {
 
     private final OrgStructureService orgStructureService;
 
-    public OrgStructureController(OrgStructureService orgStructureService) {
+    private final OrgMapper orgMapper;
+
+    public OrgStructureController(OrgStructureService orgStructureService, OrgMapper orgMapper) {
         this.orgStructureService = orgStructureService;
+        this.orgMapper = orgMapper;
     }
 
     @PostMapping(consumes = "application/json")
-    public OrgStructure add(@RequestBody OrgStructure orgStructure) {
-        orgStructureService.addOrg(orgStructure);
-        return orgStructure;
+    public OrgDto add(@RequestBody OrgDto orgStructure) {
+        return orgMapper.convertToDto(orgStructureService.addOrg(orgMapper.convertToModel(orgStructure)));
     }
 
     @GetMapping
-    public List<OrgStructure> getAll() {
-        return orgStructureService.getAll();
+    public List<OrgDto> getAll() {
+        return orgStructureService.
+                getAll().
+                stream().
+                map(orgStructure -> orgMapper.convertToDto(orgStructure)).
+                collect(Collectors.toList());
     }
 
     @GetMapping(path = "{id}")
-    public Optional<OrgStructure> findById(@PathVariable Long id) {
-        return orgStructureService.findOrg(id);
+    public Optional<OrgDto> findById(@PathVariable Long id) {
+        return orgStructureService.
+                findOrg(id).
+                map(orgStructure -> orgMapper.convertToDto(orgStructure));
     }
 
     @PutMapping(consumes = "application/json")
-    public OrgStructure update(@RequestBody OrgStructure orgStructure) {
+    public OrgDto update(@RequestBody OrgDto orgStructure) {
         return add(orgStructure);
     }
 
     @GetMapping(path = "parent/{id}")
-    public Set<OrgStructure> findByParent(@PathVariable long id) {
-        return orgStructureService.findAllByParentId(id);
+    public Set<OrgDto> findByParent(@PathVariable long id) {
+        return orgStructureService.
+                findAllByParentId(id).
+                stream().
+                map(orgStructure -> orgMapper.convertToDto(orgStructure)).
+                collect(Collectors.toSet());
     }
 
     @DeleteMapping(path = "{id}")

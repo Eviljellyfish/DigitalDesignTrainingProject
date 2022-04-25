@@ -22,6 +22,13 @@ public class UserDto {
     public UserDto() {
     }
 
+    public UserDto(long id, String firstName, String secondName, String role) {
+        this.id = id;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.role = role;
+    }
+
     public UserDto(long id, String firstName, String secondName, String role, long org, String position) {
         this.id = id;
         this.firstName = firstName;
