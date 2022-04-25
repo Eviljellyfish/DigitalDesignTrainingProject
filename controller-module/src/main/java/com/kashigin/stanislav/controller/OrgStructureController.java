@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "orgs")
+@RequestMapping(path = "/api/v1/orgs")
 public class OrgStructureController {
 
     private final OrgStructureService orgStructureService;
