@@ -1,4 +1,4 @@
-package com.kashigin.stanislav.entity.dto;
+package com.kashigin.stanislav.dto;
 
 public class RoleDto {
     private String name;

@@ -1,8 +1,8 @@
 package com.kashigin.stanislav.controller;
 
-import org.springframework.stereotype.Controller;
+import com.kashigin.stanislav.dto.UserDto;
+import com.kashigin.stanislav.dto.map.UserMapper;
 import org.springframework.web.bind.annotation.*;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import com.kashigin.stanislav.entity.*;
 import com.kashigin.stanislav.service.*;
 
@@ -14,14 +14,16 @@ import java.util.Optional;
 public class UserController {
 
     private final UserService userService;
+    private final UserMapper userMapper;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserMapper userMapper) {
         this.userService = userService;
+        this.userMapper = userMapper;
     }
 
     @PostMapping(consumes = "application/json")
-    public User add(@RequestBody User user) {
-        userService.addUser(user);
+    public UserDto add(@RequestBody UserDto user) {
+        userService.addUser(userMapper.convertToModel(user));
         return user;
     }
 
@@ -36,7 +38,7 @@ public class UserController {
     }
 
     @PutMapping(consumes = "application/json")
-    public User update(@RequestBody User user) {
+    public UserDto update(@RequestBody UserDto user) {
         return add(user);
     }
 

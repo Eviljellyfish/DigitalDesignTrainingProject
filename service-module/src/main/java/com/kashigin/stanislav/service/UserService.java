@@ -4,7 +4,6 @@ import com.kashigin.stanislav.dao.repository.OrgStructureRepository;
 import com.kashigin.stanislav.dao.repository.UserRepository;
 import com.kashigin.stanislav.entity.*;
 import org.springframework.stereotype.Service;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 import java.util.Optional;

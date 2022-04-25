@@ -22,6 +22,7 @@
     <module>main-app-module</module>
     <module>dao-module</module>
     <module>servlet-module</module>
+    <module>dto-module</module>
   </modules>
   <packaging>pom</packaging>
 
