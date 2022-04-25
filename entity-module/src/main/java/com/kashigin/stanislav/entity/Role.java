@@ -1,4 +1,4 @@
-package com.kashigin.stanislav.entity.util;
+package com.kashigin.stanislav.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;

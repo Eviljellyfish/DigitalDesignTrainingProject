@@ -2,7 +2,6 @@ package com.kashigin.stanislav.entity;
 
 
 import com.fasterxml.jackson.annotation.*;
-import com.kashigin.stanislav.entity.util.Role;
 
 import javax.persistence.*;
 
