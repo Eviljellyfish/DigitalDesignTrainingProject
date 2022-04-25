@@ -5,6 +5,7 @@ import com.kashigin.stanislav.dao.repository.UserRepository;
 import com.kashigin.stanislav.entity.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +30,10 @@ public class UserService {
     }
 
     public void deleteUser(long id) {
+        List<OrgStructure> controlledOrgs = new ArrayList<>(userRepository.findAllByHeadId(id));
+        for (OrgStructure org : controlledOrgs) {
+            org.setHead(null);
+        }
         userRepository.deleteById(id);
     }
 
@@ -39,33 +44,4 @@ public class UserService {
     public User updateUser(User user) {
         return addUser(user);
     }
-
-//    public List<User> findUsersByName(String name) {
-//        throw new NotImplementedException();
-//    }
-//
-//    public List<User> findUsersByFirstNameAndSecondName(String firstName, String secondName) {
-//        throw new NotImplementedException();
-//    }
-//
-//    public boolean moveUserToOrg(int id, OrgStructure org) {
-//        throw new NotImplementedException();
-//    }
-//
-//    public boolean changeUserRole(int id, UserRoleEnum role) {
-//        throw new NotImplementedException();
-//    }
-//
-//    public boolean changeUserPosition(int id, String pos) {
-//        throw new NotImplementedException();
-//    }
-//
-//    public boolean changeUserFirstName(int id, String name) {
-//        throw new NotImplementedException();
-//    }
-//
-//    public boolean changeUserSecondName(int id, String name) {
-//        throw new NotImplementedException();
-//    }
-
 }

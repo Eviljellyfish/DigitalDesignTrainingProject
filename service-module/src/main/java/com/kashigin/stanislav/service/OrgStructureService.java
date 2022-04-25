@@ -3,8 +3,8 @@ package com.kashigin.stanislav.service;
 import com.kashigin.stanislav.entity.*;
 import com.kashigin.stanislav.dao.repository.OrgStructureRepository;
 import org.springframework.stereotype.Service;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -28,6 +28,18 @@ public class OrgStructureService {
     }
 
     public void deleteOrg(long id) {
+        OrgStructure org = orgStructureRepository.getById(id);
+        if (org.getHead() != null)
+            org.setHead(null);
+        List<OrgStructure> subOrgsList = new ArrayList<>(orgStructureRepository.findAllByParentId(id));
+        OrgStructure parent = org.getParent();
+        for (OrgStructure subOrg: subOrgsList) {
+                subOrg.setParent(parent);
+        }
+        List<User> staff = new ArrayList<>(orgStructureRepository.findStaff(id));
+        for (User user: staff) {
+            user.setOrg(null);
+        }
         orgStructureRepository.deleteById(id);
     }
 
@@ -43,12 +55,8 @@ public class OrgStructureService {
         return addOrg(orgStructure);
     }
 
-    public List<OrgStructure> findOrgsByName(String name) {
-        throw new NotImplementedException();
-    }
-
-    public List<User> getStaff(long id) {
-        throw new NotImplementedException();
+    public Set<User> getStaff(long id) {
+        return orgStructureRepository.findStaff(id);
     }
 
 }
