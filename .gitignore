@@ -7,7 +7,6 @@ out/
 *.iml
 *.ipr
 *.iws
-*.properties
 
 ##############################
 ## Maven

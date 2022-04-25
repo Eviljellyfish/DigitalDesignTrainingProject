@@ -1,8 +1,13 @@
 package com.kashigin.stanislav.entity;
 
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @Entity
 @Table(name = "users")
 public class User {
@@ -17,24 +22,31 @@ public class User {
     @Column(name = "second_name", nullable = false)
     private String secondName;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    private UserRoleEnum role;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role", nullable = false)
+    private Role role;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "org_id")
     private OrgStructure org;
 
     @Column(name = "position")
     private String position;
 
-    public User(long id, String firstName, String secondName, UserRoleEnum role, OrgStructure org, String position) {
+    public User(long id, String firstName, String secondName, Role role, OrgStructure org, String position) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
         this.role = role;
         this.org = org;
         this.position = position;
+    }
+
+    public User(String firstName, String secondName, Role role) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.role = role;
     }
 
     public User() {
@@ -65,11 +77,11 @@ public class User {
         this.secondName = secondName;
     }
 
-    public UserRoleEnum getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(UserRoleEnum role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

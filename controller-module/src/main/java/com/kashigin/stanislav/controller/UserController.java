@@ -35,8 +35,8 @@ public class UserController {
         return userService.findUser(id);
     }
 
-    @PutMapping
-    public User update(User user) {
+    @PutMapping(consumes = "application/json")
+    public User update(@RequestBody User user) {
         return add(user);
     }
 
