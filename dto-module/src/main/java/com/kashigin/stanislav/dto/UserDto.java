@@ -13,8 +13,6 @@ public class UserDto {
 
     private String secondName;
 
-    private long role;
-
     private long org;
 
     private String position;
@@ -22,18 +20,16 @@ public class UserDto {
     public UserDto() {
     }
 
-    public UserDto(long id, String firstName, String secondName, long role) {
+    public UserDto(long id, String firstName, String secondName) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
-        this.role = role;
     }
 
-    public UserDto(long id, String firstName, String secondName, long role, long org, String position) {
+    public UserDto(long id, String firstName, String secondName, long org, String position) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
-        this.role = role;
         this.org = org;
         this.position = position;
     }
@@ -60,14 +56,6 @@ public class UserDto {
 
     public void setSecondName(String secondName) {
         this.secondName = secondName;
-    }
-
-    public long getRole() {
-        return role;
-    }
-
-    public void setRole(long role) {
-        this.role = role;
     }
 
     public long getOrg() {

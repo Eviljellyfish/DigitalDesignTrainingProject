@@ -1,9 +1,11 @@
 package com.kashigin.stanislav.service;
 
 import com.kashigin.stanislav.dao.repository.RoleRepository;
+import com.kashigin.stanislav.dao.repository.UserAuthDataRepository;
 import com.kashigin.stanislav.dao.repository.UserRepository;
 import com.kashigin.stanislav.entity.Role;
 import com.kashigin.stanislav.entity.User;
+import com.kashigin.stanislav.entity.UserAuthData;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,11 +16,11 @@ import java.util.Optional;
 public class RoleService {
 
     private final RoleRepository roleRepository;
-    private final UserRepository userRepository;
+    private final UserAuthDataRepository userAuthDataRepository;
 
-    public RoleService(RoleRepository roleRepository, UserRepository userRepository) {
+    public RoleService(RoleRepository roleRepository, UserAuthDataRepository userAuthDataRepository) {
         this.roleRepository = roleRepository;
-        this.userRepository = userRepository;
+        this.userAuthDataRepository = userAuthDataRepository;
     }
     public Role addRole(Role role) {
         roleRepository.save(role);
@@ -36,8 +38,8 @@ public class RoleService {
 
     public void delete(long id) {
         if (id > 2) {
-            List<User> users = userRepository.findAllByRoleId(id);
-            for (User user : users) {
+            List<UserAuthData> users = userAuthDataRepository.findAllByRoleId(id);
+            for (UserAuthData user : users) {
                 user.setRole(roleRepository.getById(1l));
             }
             roleRepository.deleteById(id);
