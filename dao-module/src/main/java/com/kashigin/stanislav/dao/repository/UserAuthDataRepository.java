@@ -25,4 +25,9 @@ public interface UserAuthDataRepository extends JpaRepository<UserAuthData, Long
             "from UserAuthData u " +
             "where u.user = ?1")
     UserAuthData findByUser(User user);
+
+    @Query("select u " +
+            "from UserAuthData u " +
+            "where u.user.id = ?1")
+    UserAuthData findByUser(long id);
 }

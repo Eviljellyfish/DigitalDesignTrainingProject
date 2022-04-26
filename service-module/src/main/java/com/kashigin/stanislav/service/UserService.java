@@ -1,6 +1,7 @@
 package com.kashigin.stanislav.service;
 
 import com.kashigin.stanislav.dao.repository.OrgStructureRepository;
+import com.kashigin.stanislav.dao.repository.UserAuthDataRepository;
 import com.kashigin.stanislav.dao.repository.UserRepository;
 import com.kashigin.stanislav.entity.*;
 import org.springframework.stereotype.Service;
@@ -15,9 +16,12 @@ public class UserService {
     private final UserRepository userRepository;
     private final OrgStructureRepository orgStructureRepository;
 
-    public UserService(UserRepository userRepository, OrgStructureRepository orgStructureRepository) {
+    private final UserAuthDataService userAuthDataService;
+
+    public UserService(UserRepository userRepository, OrgStructureRepository orgStructureRepository, UserAuthDataService userAuthDataService) {
         this.userRepository = userRepository;
         this.orgStructureRepository = orgStructureRepository;
+        this.userAuthDataService = userAuthDataService;
     }
 
     public List<User> getAll() {
@@ -34,6 +38,9 @@ public class UserService {
         for (OrgStructure org : controlledOrgs) {
             org.setHead(null);
         }
+        UserAuthData userAuthData = userAuthDataService.findByUserId(id);
+        if (userAuthData != null)
+            userAuthDataService.delete(userAuthData.getId());
         userRepository.deleteById(id);
     }
 

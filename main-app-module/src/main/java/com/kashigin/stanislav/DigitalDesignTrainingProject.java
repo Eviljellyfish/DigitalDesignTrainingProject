@@ -19,10 +19,10 @@ public class DigitalDesignTrainingProject {
         ApplicationContext context = SpringApplication.run(DigitalDesignTrainingProject.class, args);
         UserAuthDataService userAuthDataService = context.getBean(UserAuthDataService.class);
         userAuthDataService.add(new UserAuthData(resourceBundle.getString("admin.login"),
-                                    context.getBean(PasswordEncoder.class).encode(resourceBundle.getString("admin.password")),
+                                    resourceBundle.getString("admin.password"),
                                     context.getBean(RoleService.class).findByName("ADMIN").get()));
         userAuthDataService.add(new UserAuthData(resourceBundle.getString("user.login"),
-                context.getBean(PasswordEncoder.class).encode(resourceBundle.getString("user.password")),
+                resourceBundle.getString("user.password"),
                 context.getBean(RoleService.class).findByName("USER").get()));
 
     }
