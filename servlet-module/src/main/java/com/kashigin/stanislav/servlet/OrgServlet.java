@@ -18,6 +18,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Deprecated
 @WebServlet(name="OrgServlet", urlPatterns = "/org")
 public class OrgServlet extends HttpServlet {
 

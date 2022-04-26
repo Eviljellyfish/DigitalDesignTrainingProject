@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Deprecated
 @WebServlet(name="UserServlet", urlPatterns = "/user")
 public class UserServlet extends HttpServlet {
 

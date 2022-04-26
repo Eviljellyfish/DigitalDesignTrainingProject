@@ -23,6 +23,7 @@
     <module>dao-module</module>
     <module>servlet-module</module>
     <module>dto-module</module>
+      <module>security-module</module>
   </modules>
   <packaging>pom</packaging>
 

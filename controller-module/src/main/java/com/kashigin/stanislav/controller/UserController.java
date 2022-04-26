@@ -30,6 +30,7 @@ public class UserController {
         return userMapper.convertToDto(userService.addUser(userMapper.convertToModel(user)));
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @GetMapping
     public List<UserDto> getAll() {
         return userService.
@@ -39,6 +40,7 @@ public class UserController {
                 collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @GetMapping(path = "{id}")
     public Optional<UserDto> findById(@PathVariable Long id) {
         return userService.
@@ -46,11 +48,13 @@ public class UserController {
                 map(user -> userMapper.convertToDto(user));
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping(consumes = "application/json")
     public UserDto update(@RequestBody UserDto user) {
         return add(user);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping(path = "{id}")
     public void delete(@PathVariable long id) {
         userService.deleteUser(id);
