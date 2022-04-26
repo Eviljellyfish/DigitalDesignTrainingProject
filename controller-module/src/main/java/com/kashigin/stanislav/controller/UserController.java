@@ -2,6 +2,8 @@ package com.kashigin.stanislav.controller;
 
 import com.kashigin.stanislav.dto.UserDto;
 import com.kashigin.stanislav.dto.map.UserMapper;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.kashigin.stanislav.entity.*;
 import com.kashigin.stanislav.service.*;
@@ -22,11 +24,13 @@ public class UserController {
         this.userMapper = userMapper;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(consumes = "application/json")
     public UserDto add(@RequestBody UserDto user) {
         return userMapper.convertToDto(userService.addUser(userMapper.convertToModel(user)));
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @GetMapping
     public List<UserDto> getAll() {
         return userService.
@@ -36,6 +40,7 @@ public class UserController {
                 collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @GetMapping(path = "{id}")
     public Optional<UserDto> findById(@PathVariable Long id) {
         return userService.
@@ -43,11 +48,15 @@ public class UserController {
                 map(user -> userMapper.convertToDto(user));
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping(consumes = "application/json")
     public UserDto update(@RequestBody UserDto user) {
-        return add(user);
+        return userMapper.convertToDto(
+                userService.updateUser(userMapper.convertToModel(user))
+        );
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping(path = "{id}")
     public void delete(@PathVariable long id) {
         userService.deleteUser(id);

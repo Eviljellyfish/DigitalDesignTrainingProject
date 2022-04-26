@@ -16,6 +16,10 @@ public class UserAuthData {
     @Column(name = "hash")
     private String hash;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role", nullable = false)
+    private Role role;
+
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", unique = true)
     private User user;
@@ -33,6 +37,20 @@ public class UserAuthData {
         this.login = login;
         this.hash = hash;
         this.user = user;
+    }
+
+    public UserAuthData(String login, String hash, Role role) {
+        this.login = login;
+        this.hash = hash;
+        this.role = role;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public long getId() {

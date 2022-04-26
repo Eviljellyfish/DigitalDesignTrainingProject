@@ -38,9 +38,6 @@
             <column name="second_name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="role" type="BIGINT">
-                <constraints foreignKeyName="fk_user_role" references="role(id)"/>
-            </column>
         </createTable>
     </changeSet>
     <changeSet  id="project_orgs" author="kashigin">
@@ -98,6 +95,9 @@
 
             <column name="hash" type="VARCHAR(255)">
                 <constraints nullable="false"/>
+            </column>
+            <column name="role" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_users_auth_role" references="role(id)"/>
             </column>
             <column name="user_id" type="BIGINT">
                 <constraints nullable="true" foreignKeyName="fk_users_auth_users" references="users(id)"/>

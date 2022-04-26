@@ -17,22 +17,16 @@ public class User {
     private String secondName;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role", nullable = false)
-    private Role role;
-
-
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "org_id")
     private OrgStructure org;
 
     @Column(name = "position")
     private String position;
 
-    public User(long id, String firstName, String secondName, Role role, OrgStructure org, String position) {
+    public User(long id, String firstName, String secondName, OrgStructure org, String position) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
-        this.role = role;
         this.org = org;
         this.position = position;
     }
@@ -40,7 +34,6 @@ public class User {
     public User(String firstName, String secondName, Role role) {
         this.firstName = firstName;
         this.secondName = secondName;
-        this.role = role;
     }
 
     public User() {
@@ -69,14 +62,6 @@ public class User {
 
     public void setSecondName(String secondName) {
         this.secondName = secondName;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 
     public OrgStructure getOrg() {
