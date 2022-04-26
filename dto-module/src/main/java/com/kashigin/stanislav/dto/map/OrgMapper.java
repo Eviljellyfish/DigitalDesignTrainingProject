@@ -35,8 +35,12 @@ public class OrgMapper implements Mapper<OrgStructure, OrgDto> {
         OrgStructure org = modelMapper.map(dto, OrgStructure.class);
         if (dto.getHead() != 0)
             org.setHead(userService.findUser(dto.getHead()).get());
+        else
+            org.setHead(null);
         if (dto.getParent() != 0)
             org.setParent(orgStructureService.findOrg(dto.getHead()).get());
+        else
+            org.setParent(null);
         return org;
     }
 }

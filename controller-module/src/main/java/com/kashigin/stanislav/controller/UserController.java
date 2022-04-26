@@ -51,7 +51,9 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping(consumes = "application/json")
     public UserDto update(@RequestBody UserDto user) {
-        return add(user);
+        return userMapper.convertToDto(
+                userService.updateUser(userMapper.convertToModel(user))
+        );
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
