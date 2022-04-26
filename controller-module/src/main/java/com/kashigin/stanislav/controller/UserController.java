@@ -2,6 +2,8 @@ package com.kashigin.stanislav.controller;
 
 import com.kashigin.stanislav.dto.UserDto;
 import com.kashigin.stanislav.dto.map.UserMapper;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.kashigin.stanislav.entity.*;
 import com.kashigin.stanislav.service.*;
@@ -22,6 +24,7 @@ public class UserController {
         this.userMapper = userMapper;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(consumes = "application/json")
     public UserDto add(@RequestBody UserDto user) {
         return userMapper.convertToDto(userService.addUser(userMapper.convertToModel(user)));
