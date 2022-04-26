@@ -24,13 +24,13 @@ public class UserController {
         this.userMapper = userMapper;
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('MODERATOR') and @validator.isModerAllowedChangeUser(authentication, @userMapper.convertToModel(#user)))")
     @PostMapping(consumes = "application/json")
     public UserDto add(@RequestBody UserDto user) {
         return userMapper.convertToDto(userService.addUser(userMapper.convertToModel(user)));
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MODERATOR', 'USER')")
     @GetMapping
     public List<UserDto> getAll() {
         return userService.
@@ -40,7 +40,7 @@ public class UserController {
                 collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MODERATOR', 'USER')")
     @GetMapping(path = "{id}")
     public Optional<UserDto> findById(@PathVariable Long id) {
         return userService.
@@ -48,7 +48,7 @@ public class UserController {
                 map(user -> userMapper.convertToDto(user));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('MODERATOR') and @validator.isModerAllowedChangeUser(authentication, @userMapper.convertToModel(#user)))")
     @PutMapping(consumes = "application/json")
     public UserDto update(@RequestBody UserDto user) {
         return userMapper.convertToDto(
@@ -56,7 +56,7 @@ public class UserController {
         );
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('MODERATOR') and @validator.isModerAllowedChangeUser(authentication, @userMapper.convertToModel(#user)))")
     @DeleteMapping(path = "{id}")
     public void delete(@PathVariable long id) {
         userService.deleteUser(id);
