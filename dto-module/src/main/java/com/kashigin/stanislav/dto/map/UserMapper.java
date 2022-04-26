@@ -12,13 +12,11 @@ public class UserMapper implements Mapper<User, UserDto> {
 
     private final ModelMapper modelMapper;
 
-    private final RoleService roleService;
     private final OrgStructureService orgStructureService;
 
 
-    public UserMapper(ModelMapper modelMapper, RoleService roleService, OrgStructureService orgStructureService) {
+    public UserMapper(ModelMapper modelMapper, OrgStructureService orgStructureService) {
         this.modelMapper = modelMapper;
-        this.roleService = roleService;
         this.orgStructureService = orgStructureService;
     }
 

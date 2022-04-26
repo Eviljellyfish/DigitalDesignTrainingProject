@@ -39,6 +39,12 @@ public class UserAuthData {
         this.user = user;
     }
 
+    public UserAuthData(String login, String hash, Role role) {
+        this.login = login;
+        this.hash = hash;
+        this.role = role;
+    }
+
     public Role getRole() {
         return role;
     }

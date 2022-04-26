@@ -35,6 +35,10 @@ public class RoleService {
         return roleRepository.findAll();
     }
 
+    public Optional<Role> findByName(String name) {
+        return roleRepository.findByName(name);
+    }
+
 
     public void delete(long id) {
         if (id > 2) {
